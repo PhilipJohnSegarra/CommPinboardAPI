@@ -23,12 +23,12 @@ namespace CommPinboardAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("authenticate")]
-        public async Task<IActionResult> AuthenticateUser(string username, string password)
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> AuthenticateUser([FromBody] LogInRequest logInRequest)
         {
             try
             {
-                var result = await _helper.AuthenticateUser(username, password);
+                var result = await _helper.AuthenticateUser(logInRequest.username, logInRequest.password);
                 if(result == null)return Unauthorized("Invalid username and password");
 
                 return Ok(result);
