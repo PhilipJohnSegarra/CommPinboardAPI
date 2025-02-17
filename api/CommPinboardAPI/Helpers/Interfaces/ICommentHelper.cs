@@ -13,5 +13,6 @@ namespace CommPinboardAPI.Helpers.Interfaces
         Task<Comment> Add(Comment payload);
         Task<Comment> Update(Guid externalId, Comment payload);
         Task Delete(Guid externalId);
+        Task<List<Comment>> GetPostComments(Guid externalId);
     }
 }

@@ -53,6 +53,7 @@ namespace CommPinboardAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(UsersDto payload){
             var toEntity = _mapper.Map<User>(payload);
+            toEntity.ExternalId = Guid.NewGuid();
             var result = await _helper.Add(toEntity);
 
             return Ok(new ResponseDto{

@@ -7,7 +7,7 @@ namespace CommPinboardAPI.Dtos
 {
     public class PostDto
     {
-        public Guid ExternalId { get; set; }
+        public Guid ExternalId { get; set; } = Guid.NewGuid();
         public string? Title { get; set; }
 
         public string? Content { get; set; }
@@ -15,6 +15,8 @@ namespace CommPinboardAPI.Dtos
         public DateTime? EventDate { get; set; }
 
         public string? Location { get; set; }
+
+        public long UserId { get; set; }
 
     }
 }

@@ -11,12 +11,11 @@ namespace CommPinboardAPI.Entities
 {
     public class Post : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonIgnore]
+        [Key]
         public long PostId { get; set; }
 
         [Required]
-        public Guid UserExternalId { get; set; }
+        public long UserId { get; set; }
 
         [Column(TypeName = "nvarchar(500)")]
         public string Title { get; set;} = "";
@@ -31,5 +30,7 @@ namespace CommPinboardAPI.Entities
         [Column(TypeName ="nvarchar(max)")]
         [AllowNull]
         public string? Location { get; set; }
+
+        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
     }
 }

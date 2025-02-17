@@ -6,14 +6,18 @@ using CommPinboardAPI.Data;
 using CommPinboardAPI.Entities;
 using CommPinboardAPI.Helpers.Interfaces;
 using CommPinboardAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommPinboardAPI.Helpers
 {
     public class CommentHelper : RepositoryBase<Comment>, ICommentHelper
     {
-        public CommentHelper(DataContext db) : base(db)
+        IPostHelper _postHelper;
+        DataContext _db;
+        public CommentHelper(DataContext db, IPostHelper postHelper) : base(db)
         {
-
+            _postHelper = postHelper;
+            _db = db;
         }
         public async Task<List<Comment>> GetAll()
         {
@@ -56,6 +60,15 @@ namespace CommPinboardAPI.Helpers
             deletedComment.IsDeleted = true;
 
             await UpdateAsync(comment, deletedComment);
+        }
+
+        public async Task<List<Comment>> GetPostComments(Guid externalId)
+        {
+            var postComments = _db.Posts.Where(p => p.ExternalId == externalId)
+            .Include(p => p.Comments)
+            .Select(p => new {p.Comments});
+
+            return (List<Comment>)postComments;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace CommPinboardAPI.Dtos
 {
     public class UsersDto
     {
-        public Guid ExternalId { get; set; }
+        public Guid ExternalId { get; set; } = Guid.NewGuid();
         public string? UserName { get; set; }
 
         public string? FullName { get; set; }

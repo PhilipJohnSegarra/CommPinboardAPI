@@ -24,10 +24,6 @@ namespace CommPinboardAPI.Migrations
 
             modelBuilder.Entity("CommPinboardAPI.Entities.Comment", b =>
                 {
-                    b.Property<Guid>("ExternalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<long>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
@@ -44,29 +40,35 @@ namespace CommPinboardAPI.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("ExternalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("PostExternalId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("PostId")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("UserExternalId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.HasKey("ExternalId");
+                    b.HasKey("CommentId");
 
-                    b.HasIndex("PostExternalId");
+                    b.HasIndex("PostId");
 
-                    b.HasIndex("UserExternalId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("CommPinboardAPI.Entities.PinnedPost", b =>
                 {
-                    b.Property<Guid>("ExternalId")
+                    b.Property<long>("PinnedPostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PinnedPostId"));
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -74,35 +76,35 @@ namespace CommPinboardAPI.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("ExternalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<long>("PinnedPostId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("PostId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PinnedPostId"));
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid>("PostExternalId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasKey("PinnedPostId");
 
-                    b.Property<Guid>("UserExternalId")
-                        .HasColumnType("uniqueidentifier");
+                    b.HasIndex("PostId");
 
-                    b.HasKey("ExternalId");
-
-                    b.HasIndex("PostExternalId");
-
-                    b.HasIndex("UserExternalId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("PinnedPosts");
                 });
 
             modelBuilder.Entity("CommPinboardAPI.Entities.Post", b =>
                 {
-                    b.Property<Guid>("ExternalId")
+                    b.Property<long>("PostId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PostId"));
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -117,37 +119,37 @@ namespace CommPinboardAPI.Migrations
                     b.Property<DateTime?>("EventDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid>("ExternalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("PostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("PostId"));
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<Guid>("UserExternalId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
-                    b.HasKey("ExternalId");
+                    b.HasKey("PostId");
 
-                    b.HasIndex("UserExternalId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CommPinboardAPI.Entities.User", b =>
                 {
-                    b.Property<Guid>("ExternalId")
+                    b.Property<long>("UserId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"));
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -159,6 +161,10 @@ namespace CommPinboardAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<Guid>("ExternalId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(150)");
 
@@ -169,17 +175,11 @@ namespace CommPinboardAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("UserId"));
-
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("ExternalId");
+                    b.HasKey("UserId");
 
                     b.HasIndex("UserName")
                         .IsUnique();
@@ -190,14 +190,14 @@ namespace CommPinboardAPI.Migrations
             modelBuilder.Entity("CommPinboardAPI.Entities.Comment", b =>
                 {
                     b.HasOne("CommPinboardAPI.Entities.Post", null)
-                        .WithMany()
-                        .HasForeignKey("PostExternalId")
+                        .WithMany("Comments")
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CommPinboardAPI.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserExternalId")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
@@ -206,13 +206,13 @@ namespace CommPinboardAPI.Migrations
                 {
                     b.HasOne("CommPinboardAPI.Entities.Post", null)
                         .WithMany()
-                        .HasForeignKey("PostExternalId")
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CommPinboardAPI.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserExternalId")
+                        .WithMany("PinnedPosts")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
@@ -220,10 +220,24 @@ namespace CommPinboardAPI.Migrations
             modelBuilder.Entity("CommPinboardAPI.Entities.Post", b =>
                 {
                     b.HasOne("CommPinboardAPI.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UserExternalId")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CommPinboardAPI.Entities.Post", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("CommPinboardAPI.Entities.User", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("PinnedPosts");
+
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

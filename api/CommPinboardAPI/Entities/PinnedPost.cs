@@ -10,10 +10,9 @@ namespace CommPinboardAPI.Entities
 {
     public class PinnedPost : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonIgnore]
+        [Key]
         public long PinnedPostId { get; set; }
-        public Guid PostExternalId { get; set; }
-        public Guid UserExternalId { get; set; }
+        public long PostId { get; set; }
+        public long UserId { get; set; }
     }
 }

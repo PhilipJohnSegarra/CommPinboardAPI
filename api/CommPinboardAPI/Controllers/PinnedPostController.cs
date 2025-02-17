@@ -22,9 +22,9 @@ namespace CommPinboardAPI.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> Get(){
-            var posts = await _helper.GetAll();
-            if(posts == null) return NotFound();
-            return Ok(posts);
+            var comments = await _helper.GetAll();
+            if(comments == null) return NotFound();
+            return Ok(comments);
         }
         
         [HttpPost]

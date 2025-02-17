@@ -15,16 +15,27 @@ namespace CommPinboardAPI.Controllers
     public class CommentController : ControllerBase
     {
         ICommentHelper _helper;
+        IPostHelper _postHelper;
         IMapper _mapper;
-        public CommentController(ICommentHelper helper, IMapper mapper){
+        public CommentController(ICommentHelper helper, IMapper mapper, IPostHelper postHelper){
             _helper = helper;
             _mapper = mapper;
+            _postHelper = postHelper;
         }
         [HttpGet]
         public async Task<IActionResult> Get(){
-            var posts = await _helper.GetAll();
-            if(posts == null) return NotFound();
-            return Ok(posts);
+            var comments = await _helper.GetAll();
+            if(comments == null) return NotFound();
+            return Ok(comments);
+        }
+
+        [HttpGet("{externalId}/postComments")]
+        public async Task<IActionResult> GetPostComments(Guid externalId){
+            var result = await _helper.GetPostComments(externalId);
+            return Ok(new ResponseDto{
+                Message = "Successfully fetched",
+                Data = result
+            });
         }
         
         [HttpPost]

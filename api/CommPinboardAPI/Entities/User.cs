@@ -11,8 +11,7 @@ namespace CommPinboardAPI.Entities
 {
     public class User : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonIgnore]
+        [Key]
         public long UserId { get; set; }
 
         [Column(TypeName = "nvarchar(20)")]
@@ -30,5 +29,9 @@ namespace CommPinboardAPI.Entities
         [Column(TypeName = "nvarchar(max)")]
         [Required]
         public string PasswordHash { get; set; } = "";
+
+        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
+        public ICollection<Post> Posts{ get; set; } = new List<Post>();
+        public ICollection<PinnedPost> PinnedPosts{ get; set; }= new List<PinnedPost>();
     }
 }

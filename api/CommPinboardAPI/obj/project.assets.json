@@ -8197,11 +8197,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\CommPinboardAPI\\CommPinboardAPI.csproj",
+      "projectUniqueName": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\api\\CommPinboardAPI\\CommPinboardAPI.csproj",
       "projectName": "CommPinboardAPI",
-      "projectPath": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\CommPinboardAPI\\CommPinboardAPI.csproj",
+      "projectPath": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\api\\CommPinboardAPI\\CommPinboardAPI.csproj",
       "packagesPath": "C:\\Users\\phili\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\CommPinboardAPI\\obj\\",
+      "outputPath": "C:\\Users\\phili\\source\\repos\\CommPinboardAPI\\api\\CommPinboardAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

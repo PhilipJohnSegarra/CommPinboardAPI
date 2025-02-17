@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CommPinboardAPI.Entities
 {
     public class Comment : BaseEntity
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonIgnore]
+        [Key]
         public long CommentId { get; set; }
 
-        public Guid PostExternalId { get; set; }
-        public Guid UserExternalId { get; set; }
+        public long PostId { get; set; }
+        public long UserId { get; set; }
 
         [Column(TypeName = "nvarchar(max)")]
         [Required]
