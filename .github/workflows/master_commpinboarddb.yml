@@ -21,10 +21,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Restore dependencies
-        run: dotnet restore "api/CommPinboardAPI/CommPinboardAPI.sln"  # ✅ Pointing to solution file
+        run: dotnet restore "CommPinboardAPI.sln"  # ✅ Pointing to solution file
 
       - name: Build with dotnet
-        run: dotnet build "api/CommPinboardAPI/CommPinboardAPI.sln" --configuration Release --no-restore  # ✅ Specify solution
+        run: dotnet build "CommPinboardAPI.sln" --configuration Release --no-restore  # ✅ Specify solution
 
       - name: dotnet publish
         run: dotnet publish "/api/CommPinboardAPI/CommPinboardAPI.csproj" -c Release -o "${{github.workspace}}/published-app"  # ✅ Pointing to project
