@@ -40,6 +40,25 @@ namespace CommPinboardAPI.Controllers
             
         }
 
+        [HttpGet("authenticateUser")]
+        public async Task<IActionResult> AuthenticateUser(string username, string password)
+        {
+            try
+            {
+                var result = await _helper.AuthenticateUser(username, password);
+                if (result == null)
+                {
+                    return Unauthorized(new { success = false, message = "Invalid username or password" });
+                }
+ 
+                return Ok(new { success = true, data = result });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, message = "An error occurred", error = ex.Message });
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get(){
             var result = await _helper.GetAll();
