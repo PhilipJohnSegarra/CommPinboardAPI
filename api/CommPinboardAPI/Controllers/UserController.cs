@@ -35,7 +35,7 @@ namespace CommPinboardAPI.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ResponseDto { Message = ex.Message });
             }
             
         }

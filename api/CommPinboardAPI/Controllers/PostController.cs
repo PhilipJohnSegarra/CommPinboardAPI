@@ -62,7 +62,7 @@ namespace CommPinboardAPI.Controllers
         public async Task<IActionResult> Delete(Guid externalId){
             await _helper.Delete(externalId);
             if(_helper.Get(externalId) != null){
-                return BadRequest("Deletion unsuccessful");
+                return BadRequest(new ResponseDto{Message = "Deletion Unsuccessful"});
             }
 
             return Ok(new ResponseDto{Message = "Deletion successful"});
