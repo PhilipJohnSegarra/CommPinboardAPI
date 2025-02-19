@@ -27,6 +27,13 @@ namespace CommPinboardAPI.Controllers
             if(posts == null) return NotFound();
             return Ok(posts);
         }
+
+        [HttpGet("withUsers")]
+        public async Task<IActionResult> GetWithUsers(){
+            var result = await _helper.GetPostsWithUsers();
+            if(result == null) return NotFound();
+            return Ok(result);
+        }
         
         [HttpPost]
         public async Task<IActionResult> Add(PostDto payload){

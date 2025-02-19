@@ -20,5 +20,10 @@ namespace CommPinboardAPI.Entities
         [Column(TypeName = "nvarchar(max)")]
         [Required]
         public string Content { get; set; } = "";
+
+        [ForeignKey(nameof(PostId))]
+        public Post Post { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public User User { get; set; }
     }
 }

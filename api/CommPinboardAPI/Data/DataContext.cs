@@ -22,36 +22,41 @@ namespace CommPinboardAPI.Data
             HasIndex(u => u.UserName)
             .IsUnique();
 
+            modelBuilder.Entity<User>()
+            .HasMany(u => u.Posts)
+            .WithOne(u => u.User)
+            .HasForeignKey(u => u.UserId);
+
             modelBuilder.Entity<Post>()
-            .HasOne<User>()
+            .HasOne(u => u.User)
             .WithMany(p => p.Posts)
             .HasForeignKey(a => a.UserId)
             .HasPrincipalKey(o => o.UserId)
             .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Comment>()
-            .HasOne<Post>()
+            .HasOne(p => p.Post)
             .WithMany(p => p.Comments)
             .HasForeignKey(b => b.PostId)
             .HasPrincipalKey(o => o.PostId)
             .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Comment>()
-            .HasOne<User>()
+            .HasOne(p => p.User)
             .WithMany(p => p.Comments)
             .HasForeignKey(c => c.UserId)
             .HasPrincipalKey(o => o.UserId)
             .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<PinnedPost>()
-            .HasOne<Post>()
+            .HasOne(p => p.Post)
             .WithMany()
             .HasForeignKey(d => d.PostId)
             .HasPrincipalKey(o => o.PostId)
             .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<PinnedPost>()
-            .HasOne<User>()
+            .HasOne(p => p.User)
             .WithMany(p => p.PinnedPosts)
             .HasForeignKey(e => e.UserId)
             .HasPrincipalKey(o => o.UserId)

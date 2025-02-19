@@ -10,5 +10,6 @@ namespace CommPinboardAPI.Dtos
         public Guid ExternalId { get; set; }
         public long PostId { get; set; }
         public long UserId { get; set; }
+        
     }
 }

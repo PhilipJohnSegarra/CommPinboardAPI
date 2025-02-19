@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommPinboardAPI.Entities;
 
 namespace CommPinboardAPI.Dtos
 {
@@ -17,6 +18,10 @@ namespace CommPinboardAPI.Dtos
         public string? Location { get; set; }
 
         public long UserId { get; set; }
+
+        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
+
+        public User User { get; set; } = new User();
 
     }
 }

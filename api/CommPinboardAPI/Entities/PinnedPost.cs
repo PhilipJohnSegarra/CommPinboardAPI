@@ -14,5 +14,10 @@ namespace CommPinboardAPI.Entities
         public long PinnedPostId { get; set; }
         public long PostId { get; set; }
         public long UserId { get; set; }
+
+        [ForeignKey(nameof(PostId))]
+        public Post Post { get; set; }
+        [ForeignKey(nameof(UserId))]
+        public User User { get; set; }
     }
 }

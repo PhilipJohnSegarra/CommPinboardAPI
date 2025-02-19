@@ -6,14 +6,16 @@ using CommPinboardAPI.Data;
 using CommPinboardAPI.Entities;
 using CommPinboardAPI.Helpers.Interfaces;
 using CommPinboardAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommPinboardAPI.Helpers
 {
     public class PostHelper : RepositoryBase<Post>, IPostHelper
     {
+        DataContext _db;
         public PostHelper(DataContext db) : base(db)
         {
-
+            _db = db;
         }
 
         public async Task<List<Post>> GetAll()
@@ -57,6 +59,14 @@ namespace CommPinboardAPI.Helpers
             deletedPost.IsDeleted = true;
 
             await UpdateAsync(post, deletedPost);
+        }
+        
+        public async Task<List<Post>> GetPostsWithUsers(){
+            var PostWithUsers = await _db.Posts
+                .Include(p => p.User)
+                .ToListAsync();
+            
+            return PostWithUsers;
         }
     }
 }

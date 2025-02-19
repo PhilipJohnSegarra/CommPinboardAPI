@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommPinboardAPI.Entities;
 
 namespace CommPinboardAPI.Dtos
 {
@@ -19,6 +20,10 @@ namespace CommPinboardAPI.Dtos
         public DateTime DateCreated { get; set; }
 
         public DateTime DateUpdated { get; set; }
+
+        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
+        public ICollection<Post> Posts{ get; set; } = new List<Post>();
+        public ICollection<PinnedPost> PinnedPosts{ get; set; }= new List<PinnedPost>();
 
         
     }
