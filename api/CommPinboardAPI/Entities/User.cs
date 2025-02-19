@@ -30,6 +30,7 @@ namespace CommPinboardAPI.Entities
         [Required]
         public string PasswordHash { get; set; } = "";
 
+        
         public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
         public ICollection<Post> Posts{ get; set; } = new List<Post>();
         public ICollection<PinnedPost> PinnedPosts{ get; set; }= new List<PinnedPost>();

@@ -19,9 +19,5 @@ namespace CommPinboardAPI.Dtos
 
         public long UserId { get; set; }
 
-        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
-
-        public User User { get; set; } = new User();
-
     }
 }

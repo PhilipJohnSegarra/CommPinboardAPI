@@ -7,15 +7,19 @@ using CommPinboardAPI.Entities;
 using CommPinboardAPI.Repositories;
 using BCrypt.Net;
 using CommPinboardAPI.Helpers.Interfaces;
+using AutoMapper;
+using CommPinboardAPI.Dtos;
 
 namespace CommPinboardAPI.Helpers
 {
     public class UserHelper : RepositoryBase<User>, IUserHelper
     {
         private readonly HashHelper _hashHelper;
-        public UserHelper(DataContext db, HashHelper hashHelper) : base(db)
+        private readonly IMapper _mapper;
+        public UserHelper(DataContext db, HashHelper hashHelper, IMapper mapper) : base(db)
         {
             _hashHelper = hashHelper;
+            _mapper = mapper;
         }
 
         public async Task<List<User>> GetAll()
@@ -64,17 +68,18 @@ namespace CommPinboardAPI.Helpers
             await UpdateAsync(user, deletedUser);
         }
 
-        public async Task<User> AuthenticateUser(string userName, string password)
+        public async Task<UsersDto> AuthenticateUser(string userName, string password)
         {
             string hashedPassword = await _hashHelper.ComputeSHA256(password);
 
             var user = await GetAsync(user => user.UserName.Equals(userName));
+            var userDto = _mapper.Map<UsersDto>(user);
             bool isValid = await _hashHelper.Verify(password, user.PasswordHash);
 
             if(!isValid){
                 throw new BadHttpRequestException("Invalid credentials");
             }
-            return user;
+            return userDto;
         }
     }
 }

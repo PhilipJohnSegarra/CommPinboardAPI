@@ -13,6 +13,13 @@ namespace CommPinboardAPI.Services
         public ObjectMapper(){
             CreateMap<UsersDto, User>();
             CreateMap<PostDto, Post>();
+            CreateMap<PinnedPostDto, PinnedPost>();
+            CreateMap<CommentDto, Comment>();
+
+            CreateMap<User, UsersDto>();
+            CreateMap<Post, PostDto>();
+            CreateMap<PinnedPost, PinnedPostDto>();
+            CreateMap<Comment, CommentDto>();
         }
     }
 }
