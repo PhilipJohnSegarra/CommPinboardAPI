@@ -12,5 +12,9 @@ namespace CommPinboardAPI.Dtos
         public long PostId { get; set; }
         public long UserId { get; set; }
         public string Content { get; set; } = "";
+        
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set;}
     }
 }
