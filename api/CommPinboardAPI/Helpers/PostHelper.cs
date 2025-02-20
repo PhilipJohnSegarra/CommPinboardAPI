@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommPinboardAPI.Data;
+using CommPinboardAPI.Dtos;
 using CommPinboardAPI.Entities;
 using CommPinboardAPI.Helpers.Interfaces;
 using CommPinboardAPI.Repositories;
@@ -61,11 +62,26 @@ namespace CommPinboardAPI.Helpers
             await UpdateAsync(post, deletedPost);
         }
         
-        public async Task<List<Post>> GetPostsWithUsers(){
+        public async Task<List<PostDto>> GetPostsWithUsers(){
             var PostWithUsers = await _db.Posts
                 .Include(p => p.User)
+                .Select(p => new PostDto
+                {
+                    ExternalId = p.ExternalId,
+                    Title = p.Title,
+                    Content = p.Content,
+                    EventDate = p.EventDate,
+                    Location = p.Location,
+                    User = new UsersDto
+                    {
+                        ExternalId = p.User.ExternalId,
+                        FullName = p.User.FullName,
+                        Email = p.User.Email,
+                        UserName = p.User.UserName,
+                    }
+                })
                 .ToListAsync();
-            
+
             return PostWithUsers;
         }
     }

@@ -19,5 +19,7 @@ namespace CommPinboardAPI.Dtos
 
         public long UserId { get; set; }
 
+        public UsersDto User { get; set; }
+
     }
 }
