@@ -31,9 +31,9 @@ namespace CommPinboardAPI.Entities
         [AllowNull]
         public string? Location { get; set; }
 
-        public ICollection<Comment> Comments{ get; set; } = new List<Comment>();
+        public ICollection<Comment>? Comments{ get; set; } = new List<Comment>();
 
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

@@ -16,8 +16,8 @@ namespace CommPinboardAPI.Entities
         public long UserId { get; set; }
 
         [ForeignKey(nameof(PostId))]
-        public Post Post { get; set; }
+        public Post? Post { get; set; }
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }
