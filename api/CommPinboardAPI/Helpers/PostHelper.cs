@@ -68,10 +68,12 @@ namespace CommPinboardAPI.Helpers
                 .Select(p => new PostDto
                 {
                     ExternalId = p.ExternalId,
+                    PostId = p.PostId,
                     Title = p.Title,
                     Content = p.Content,
                     EventDate = p.EventDate,
                     Location = p.Location,
+                    UserId = p.UserId,
                     User = new UsersDto
                     {
                         ExternalId = p.User.ExternalId,

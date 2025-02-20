@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CommPinboardAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5e70c2e432ec6e66d1678e3c2011fbff18ffb02")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59a87e3f61b7d8469e72dc079056ae4efee20dee")]
 [assembly: System.Reflection.AssemblyProductAttribute("CommPinboardAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CommPinboardAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
