@@ -74,6 +74,8 @@ namespace CommPinboardAPI.Helpers
                     EventDate = p.EventDate,
                     Location = p.Location,
                     UserId = p.UserId,
+                    DateCreated = p.DateCreated,
+                    DateUpdated = p.DateUpdated,
                     User = new UsersDto
                     {
                         ExternalId = p.User.ExternalId,
@@ -81,6 +83,8 @@ namespace CommPinboardAPI.Helpers
                         Email = p.User.Email,
                         UserName = p.User.UserName,
                         UserId = p.User.UserId,
+                        DateCreated = p.User.DateCreated,
+                        DateUpdated = p.User.DateUpdated
                     }
                 })
                 .ToListAsync();
