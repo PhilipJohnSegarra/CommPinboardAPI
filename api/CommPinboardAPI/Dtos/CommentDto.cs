@@ -7,7 +7,7 @@ namespace CommPinboardAPI.Dtos
 {
     public class CommentDto
     {
-        public Guid ExternalId { get; set; }
+        public Guid ExternalId { get; set; } = Guid.NewGuid();
         public long CommentId { get; set; }
         public long PostId { get; set; }
         public long UserId { get; set; }
