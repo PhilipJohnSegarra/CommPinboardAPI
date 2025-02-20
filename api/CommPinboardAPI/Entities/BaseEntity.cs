@@ -9,6 +9,7 @@ namespace CommPinboardAPI.Entities
 {
     public abstract class BaseEntity
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ExternalId { get; set; } = Guid.NewGuid();
         [Column(TypeName="datetime2")]
         public DateTime DateCreated { get; set; } = DateTime.Now;
