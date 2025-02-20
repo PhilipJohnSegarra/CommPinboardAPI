@@ -8,7 +8,7 @@ namespace CommPinboardAPI.Dtos
 {
     public class PostDto
     {
-        public Guid ExternalId { get; set; } = Guid.NewGuid();
+        public Guid ExternalId { get; set; }
         public long PostId { get; set; }
         public string? Title { get; set; }
 
