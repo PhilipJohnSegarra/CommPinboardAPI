@@ -8,6 +8,7 @@ namespace CommPinboardAPI.Dtos
     public class PinnedPostDto
     {
         public Guid ExternalId { get; set; }
+        public long PinnedPostId { get; set; }
         public long PostId { get; set; }
         public long UserId { get; set; }
         
