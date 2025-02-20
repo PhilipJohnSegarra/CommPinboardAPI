@@ -78,6 +78,7 @@ namespace CommPinboardAPI.Helpers
                         FullName = p.User.FullName,
                         Email = p.User.Email,
                         UserName = p.User.UserName,
+                        UserId = p.User.UserId,
                     }
                 })
                 .ToListAsync();
