@@ -62,9 +62,11 @@ namespace CommPinboardAPI.Helpers
             await UpdateAsync(post, deletedPost);
         }
         
-        public async Task<List<PostDto>> GetPostsWithUsers(){
+        public async Task<List<PostDto>> GetPostsWithUsers(long userExternalId){
+            var pinnedPosts = _db.PinnedPosts.Where(p => p.UserId.Equals(userExternalId))
+                .Select(p => p.PostId);
             var PostWithUsers = await _db.Posts
-                .Where(p => p.IsDeleted.Equals(false))
+                .Where(p => p.IsDeleted.Equals(false) && !pinnedPosts.Contains(p.PostId))
                 .Include(p => p.User)
                 .Select(p => new PostDto
                 {

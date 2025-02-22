@@ -14,6 +14,6 @@ namespace CommPinboardAPI.Helpers.Interfaces
         Task<Post> Add(Post payload);
         Task<Post> Update(Guid externalId, Post payload);
         Task Delete(Guid externalId);
-        Task<List<PostDto>> GetPostsWithUsers();
+        Task<List<PostDto>> GetPostsWithUsers(long userExternalId);
     }
 }

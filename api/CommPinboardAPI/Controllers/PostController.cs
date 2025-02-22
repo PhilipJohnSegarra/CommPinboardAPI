@@ -29,8 +29,8 @@ namespace CommPinboardAPI.Controllers
         }
 
         [HttpGet("withUsers")]
-        public async Task<IActionResult> GetWithUsers(){
-            var result = await _helper.GetPostsWithUsers();
+        public async Task<IActionResult> GetWithUsers(long userExternalId){
+            var result = await _helper.GetPostsWithUsers(userExternalId);
             if(result == null) return NotFound();
             return Ok(result);
         }
