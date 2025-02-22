@@ -60,12 +60,15 @@ namespace CommPinboardAPI.Controllers
 
         [HttpDelete]
         public async Task<IActionResult> Delete(Guid externalId){
-            await _helper.Delete(externalId);
-            if(_helper.Get(externalId) != null){
-                return BadRequest(new ResponseDto{Message = "Deletion Unsuccessful"});
-            }
+            try{
+                await _helper.Delete(externalId);
 
-            return Ok(new ResponseDto{Message = "Deletion successful"});
+                return Ok(new ResponseDto{Message = "Deletion successful"});
+            }
+            catch(Exception e){
+                return BadRequest(new ResponseDto{Message = e.ToString(), IsSuccess = false});
+            }
+            
         }
     }
 }

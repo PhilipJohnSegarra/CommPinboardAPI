@@ -64,6 +64,7 @@ namespace CommPinboardAPI.Helpers
         
         public async Task<List<PostDto>> GetPostsWithUsers(){
             var PostWithUsers = await _db.Posts
+                .Where(p => p.IsDeleted.Equals(false))
                 .Include(p => p.User)
                 .Select(p => new PostDto
                 {
