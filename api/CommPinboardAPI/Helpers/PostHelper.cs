@@ -63,7 +63,7 @@ namespace CommPinboardAPI.Helpers
         }
         
         public async Task<List<PostDto>> GetPostsWithUsers(long userExternalId){
-            var pinnedPosts = _db.PinnedPosts.Where(p => p.UserId.Equals(userExternalId))
+            var pinnedPosts = _db.PinnedPosts.Where(p => p.UserId.Equals(userExternalId) && p.IsDeleted.Equals(false))
                 .Select(p => p.PostId);
             var PostWithUsers = await _db.Posts
                 .Where(p => p.IsDeleted.Equals(false) && !pinnedPosts.Contains(p.PostId))
