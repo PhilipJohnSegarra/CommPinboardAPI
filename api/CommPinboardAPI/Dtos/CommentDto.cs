@@ -13,8 +13,8 @@ namespace CommPinboardAPI.Dtos
         public long UserId { get; set; }
         public string Content { get; set; } = "";
         
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
-        public DateTime DateUpdated { get; set;} = DateTime.Now;
+        public DateTime DateUpdated { get; set;} = DateTime.UtcNow;
     }
 }

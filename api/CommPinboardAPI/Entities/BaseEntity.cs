@@ -12,9 +12,9 @@ namespace CommPinboardAPI.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ExternalId { get; set; } = Guid.NewGuid();
         [Column(TypeName="datetime2")]
-        public DateTime DateCreated { get; set; } = DateTime.Now;
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         [Column(TypeName="datetime2")]
-        public DateTime DateUpdated { get; set;} = DateTime.Now;
+        public DateTime DateUpdated { get; set;} = DateTime.UtcNow;
         [Column(TypeName ="bit")]
         public bool IsDeleted { get; set; } = false;
     }
