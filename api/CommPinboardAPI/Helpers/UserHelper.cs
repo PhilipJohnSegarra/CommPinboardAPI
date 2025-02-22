@@ -53,6 +53,8 @@ namespace CommPinboardAPI.Helpers
             }
 
             var oldUser = await GetAsync(user => user.ExternalId.Equals(externalId) && user.IsDeleted.Equals(false));
+            //Hash the updated password
+            payload.PasswordHash = await _hashHelper.Encrypt(payload.PasswordHash);
             await UpdateAsync(oldUser, payload);
 
             return await Get(externalId);

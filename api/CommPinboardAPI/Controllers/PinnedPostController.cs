@@ -26,6 +26,8 @@ namespace CommPinboardAPI.Controllers
             if(comments == null) return NotFound();
             return Ok(comments);
         }
+
+        //ADD GET USER PINNEDPOSTS
         
         [HttpPost]
         public async Task<IActionResult> Add(PinnedPostDto payload){
