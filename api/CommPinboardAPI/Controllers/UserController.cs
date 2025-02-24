@@ -85,6 +85,7 @@ namespace CommPinboardAPI.Controllers
         public async Task<IActionResult> Update(UsersDto oldUser)
         {
             var toEntity = _mapper.Map<User>(oldUser);
+            toEntity.DateUpdated = DateTime.Now;
             var result = await _helper.Update(oldUser.ExternalId, toEntity);
 
             return Ok(new ResponseDto{
