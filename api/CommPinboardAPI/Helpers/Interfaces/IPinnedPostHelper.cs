@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CommPinboardAPI.Dtos;
 using CommPinboardAPI.Entities;
 
 namespace CommPinboardAPI.Helpers.Interfaces
@@ -13,5 +14,7 @@ namespace CommPinboardAPI.Helpers.Interfaces
         Task<PinnedPost> Add(PinnedPost payload);
         Task<PinnedPost> Update(Guid externalId, PinnedPost payload);
         Task Delete(Guid externalId);
+
+        Task<List<PinnedPostDto>> GetUserPinnedPosts(Guid externalId);
     }
 }
