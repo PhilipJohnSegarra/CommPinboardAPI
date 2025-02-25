@@ -15,6 +15,6 @@ namespace CommPinboardAPI.Helpers.Interfaces
         Task<PinnedPost> Update(Guid externalId, PinnedPost payload);
         Task Delete(Guid externalId);
 
-        Task<List<PinnedPostDto>> GetUserPinnedPosts(Guid externalId);
+        Task<List<PinnedPostDto>> GetUserPinnedPosts(long externalId);
     }
 }

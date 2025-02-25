@@ -27,8 +27,8 @@ namespace CommPinboardAPI.Controllers
             return Ok(comments);
         }
         [HttpGet("userPinnedPost")]
-        public async Task<IActionResult> GetUserPinnedPost(Guid externalId){
-            var result = await _helper.GetUserPinnedPosts(externalId);
+        public async Task<IActionResult> GetUserPinnedPost(long userId){
+            var result = await _helper.GetUserPinnedPosts(userId);
             return Ok(new ResponseDto{Data = result, Message = "Successfully retrieved"});
         }
         //ADD GET USER PINNEDPOSTS

@@ -29,7 +29,7 @@ namespace CommPinboardAPI.Helpers
             PinnedPost pinnedPost = await GetAsync(pinnedPost => pinnedPost.ExternalId == externalId);
             return pinnedPost;
         }
-        public async Task<List<PinnedPostDto>> GetUserPinnedPosts(Guid externalId){
+        public async Task<List<PinnedPostDto>> GetUserPinnedPosts(long externalId){
             var userPinnedPost = await _db.PinnedPosts
                                 .Where(p => p.UserId.Equals(externalId) && p.IsDeleted.Equals(false))
                                 .Include(p => p.Post)
